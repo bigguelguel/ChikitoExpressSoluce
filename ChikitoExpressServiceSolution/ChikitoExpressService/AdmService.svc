@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="ChikitoExpressService.AdmService" CodeBehind="AdmService.svc.cs" %>

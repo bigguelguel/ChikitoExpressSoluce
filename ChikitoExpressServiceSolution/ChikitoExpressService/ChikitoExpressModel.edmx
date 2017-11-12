@@ -1,0 +1,2785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="chikitoexpressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administradores">
+          <Key>
+            <PropertyRef Name="idAdm" />
+          </Key>
+          <Property Name="idAdm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="salario" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModicacion" Type="datetime" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articulos">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="int" Nullable="false" />
+          <Property Name="descripcionArticulo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="pesoArticulo" Type="int" Nullable="false" />
+          <Property Name="cantidadArticulo" Type="int" Nullable="false" />
+          <Property Name="idCategoriaArticulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bebidas">
+          <Key>
+            <PropertyRef Name="idBebida" />
+          </Key>
+          <Property Name="idBebida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoBebida" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriaArticulos">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="fechaModicacion" Type="datetime" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="puntoFidelizacion" Type="int" />
+          <Property Name="fechaUltimoCompra" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Descuentos">
+          <Key>
+            <PropertyRef Name="idDescuentos" />
+          </Key>
+          <Property Name="idDescuentos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="porcentage" Type="decimal" Precision="1" Scale="1" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="FechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idZona" Type="int" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edificio" Type="varchar" MaxLength="50" />
+          <Property Name="Apt" Type="varchar" MaxLength="10" />
+          <Property Name="casa" Type="varchar" MaxLength="10" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElementosDeMenu">
+          <Key>
+            <PropertyRef Name="idElemento" />
+          </Key>
+          <Property Name="idElemento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idBebida" Type="int" />
+          <Property Name="idMenu" Type="int" Nullable="false" />
+          <Property Name="idPlato" Type="int" />
+          <Property Name="disponible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnvioDestino">
+          <Key>
+            <PropertyRef Name="idDestino" />
+          </Key>
+          <Property Name="idDestino" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEnvio" Type="int" Nullable="false" />
+          <Property Name="idSucursal" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnvioOrigin">
+          <Key>
+            <PropertyRef Name="idOrigin" />
+          </Key>
+          <Property Name="idOrigin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEnvio" Type="int" Nullable="false" />
+          <Property Name="idSucursal" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Envios">
+          <Key>
+            <PropertyRef Name="idEnvio" />
+          </Key>
+          <Property Name="idEnvio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreDestinatario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreRemitente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estadoSolicitud" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idArticulo" Type="int" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturaEnvios">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="costoEnvio" Type="int" Nullable="false" />
+          <Property Name="estadoFactura" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idEnvio" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="idFacturas" />
+          </Key>
+          <Property Name="idFacturas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="idDescuentos" Type="int" />
+          <Property Name="idOrden" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipios">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provencias_idprovencia" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ordenes">
+          <Key>
+            <PropertyRef Name="idOrden" />
+          </Key>
+          <Property Name="idOrden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDireccion" Type="int" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="deliveryOpcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precioTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrdenesDetalles">
+          <Key>
+            <PropertyRef Name="idOrdenDetalle" />
+          </Key>
+          <Property Name="idOrdenDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrden" Type="int" Nullable="false" />
+          <Property Name="idElementosDeMenu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="idpais" />
+          </Key>
+          <Property Name="idpais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDireccion" Type="int" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="50" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Platos">
+          <Key>
+            <PropertyRef Name="idPlato" />
+          </Key>
+          <Property Name="idPlato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoPlato" Type="int" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provencias">
+          <Key>
+            <PropertyRef Name="idprovencia" />
+          </Key>
+          <Property Name="idprovencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pais_idpais" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="accesso" Type="bit" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sucursales">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idDireccion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposBebidas">
+          <Key>
+            <PropertyRef Name="idTipoBebida" />
+          </Key>
+          <Property Name="idTipoBebida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModificacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposPlatos">
+          <Key>
+            <PropertyRef Name="idTipoPlato" />
+          </Key>
+          <Property Name="idTipoPlato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="loginEstado" Type="bit" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+        </EntityType>
+        <EntityType Name="UsersRoles">
+          <Key>
+            <PropertyRef Name="idUserRole" />
+          </Key>
+          <Property Name="idUserRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zonas">
+          <Key>
+            <PropertyRef Name="idZona" />
+          </Key>
+          <Property Name="idZona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMunicipio" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="fechaModicacion" Type="date" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewAdministradores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewAdministradores">
+          <Key>
+            <PropertyRef Name="idAdm" />
+            <PropertyRef Name="idUserName" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="salario" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="Zona" />
+            <PropertyRef Name="loginEstado" />
+          </Key>
+          <Property Name="idAdm" Type="int" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="50" />
+          <Property Name="idUserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="salario" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edificio" Type="varchar" MaxLength="50" />
+          <Property Name="Apt" Type="varchar" MaxLength="10" />
+          <Property Name="casa" Type="varchar" MaxLength="10" />
+          <Property Name="Zona" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="loginEstado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewClientes">
+          <Key>
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Online" />
+            <PropertyRef Name="Roles" />
+          </Key>
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="50" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edificio" Type="varchar" MaxLength="50" />
+          <Property Name="Apt" Type="varchar" MaxLength="10" />
+          <Property Name="casa" Type="varchar" MaxLength="10" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Online" Type="bit" Nullable="false" />
+          <Property Name="Roles" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewEmpleados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEmpleados">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="salario" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Online" />
+            <PropertyRef Name="Roles" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="50" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="primerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edificio" Type="varchar" MaxLength="50" />
+          <Property Name="Apt" Type="varchar" MaxLength="10" />
+          <Property Name="casa" Type="varchar" MaxLength="10" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="salario" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Online" Type="bit" Nullable="false" />
+          <Property Name="Roles" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewEnvios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewEnvios">
+          <Key>
+            <PropertyRef Name="idEnvio" />
+            <PropertyRef Name="estadoSolicitud" />
+            <PropertyRef Name="Origin" />
+            <PropertyRef Name="Destino" />
+          </Key>
+          <Property Name="idEnvio" Type="int" Nullable="false" />
+          <Property Name="estadoSolicitud" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Origin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destino" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewFacturas">
+          <Key>
+            <PropertyRef Name="idFacturas" />
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idEmpleado" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="Zona" />
+            <PropertyRef Name="Bebida" />
+            <PropertyRef Name="deliveryOpcion" />
+            <PropertyRef Name="BebidaPrecio" />
+            <PropertyRef Name="Plato" />
+            <PropertyRef Name="Platoprecio" />
+          </Key>
+          <Property Name="idFacturas" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edificio" Type="varchar" MaxLength="50" />
+          <Property Name="Apt" Type="varchar" MaxLength="10" />
+          <Property Name="casa" Type="varchar" MaxLength="10" />
+          <Property Name="Zona" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bebida" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="deliveryOpcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="BebidaPrecio" Type="int" Nullable="false" />
+          <Property Name="Plato" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Platoprecio" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturasEnvios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewFacturasEnvios">
+          <Key>
+            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="costoEnvio" />
+            <PropertyRef Name="idEnvio" />
+            <PropertyRef Name="nombreDestinatario" />
+            <PropertyRef Name="nombreRemitente" />
+            <PropertyRef Name="Valor" />
+            <PropertyRef Name="descripcionArticulo" />
+            <PropertyRef Name="cantidadArticulo" />
+            <PropertyRef Name="categoria" />
+          </Key>
+          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="costoEnvio" Type="int" Nullable="false" />
+          <Property Name="idEnvio" Type="int" Nullable="false" />
+          <Property Name="nombreDestinatario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreRemitente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="descripcionArticulo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="cantidadArticulo" Type="int" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="Administradores_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Administradores_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Articulo_CategoriaArticulo">
+          <End Role="CategoriaArticulos" Type="Self.CategoriaArticulos" Multiplicity="1" />
+          <End Role="Articulos" Type="Self.Articulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaArticulos">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="Articulos">
+              <PropertyRef Name="idCategoriaArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bebidas_TiposBebidas">
+          <End Role="TiposBebidas" Type="Self.TiposBebidas" Multiplicity="1" />
+          <End Role="Bebidas" Type="Self.Bebidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposBebidas">
+              <PropertyRef Name="idTipoBebida" />
+            </Principal>
+            <Dependent Role="Bebidas">
+              <PropertyRef Name="idTipoBebida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Clientes_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Clientes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Direcciones_Zonas">
+          <End Role="Zonas" Type="Self.Zonas" Multiplicity="1" />
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="idZona" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="idZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Bebidas">
+          <End Role="Bebidas" Type="Self.Bebidas" Multiplicity="0..1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bebidas">
+              <PropertyRef Name="idBebida" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idBebida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Platos">
+          <End Role="Platos" Type="Self.Platos" Multiplicity="0..1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platos">
+              <PropertyRef Name="idPlato" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idPlato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Empleados_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Empleados_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envio_Articulo">
+          <End Role="Articulos" Type="Self.Articulos" Multiplicity="1" />
+          <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulos">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="Envios">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envio_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Envios" Type="Self.Envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Envios">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvioDestino_Envios">
+          <End Role="Envios" Type="Self.Envios" Multiplicity="1" />
+          <End Role="EnvioDestino" Type="Self.EnvioDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="EnvioDestino">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvioDestino_Sucursales">
+          <End Role="Sucursales" Type="Self.Sucursales" Multiplicity="1" />
+          <End Role="EnvioDestino" Type="Self.EnvioDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="EnvioDestino">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envios_Sucursales_Envio">
+          <End Role="Envios" Type="Self.Envios" Multiplicity="1" />
+          <End Role="EnvioOrigin" Type="Self.EnvioOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="EnvioOrigin">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envios_Sucursales_Sucursal">
+          <End Role="Sucursales" Type="Self.Sucursales" Multiplicity="1" />
+          <End Role="EnvioOrigin" Type="Self.EnvioOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="EnvioOrigin">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FacturaEnvio_Envio">
+          <End Role="Envios" Type="Self.Envios" Multiplicity="1" />
+          <End Role="FacturaEnvios" Type="Self.FacturaEnvios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="FacturaEnvios">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Descuentos">
+          <End Role="Descuentos" Type="Self.Descuentos" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuentos">
+              <PropertyRef Name="idDescuentos" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idDescuentos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Empleados">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Ordenes">
+          <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ordenes">
+              <PropertyRef Name="idOrden" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Municipios_Provencias">
+          <End Role="Provencias" Type="Self.Provencias" Multiplicity="1" />
+          <End Role="Municipios" Type="Self.Municipios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provencias">
+              <PropertyRef Name="idprovencia" />
+            </Principal>
+            <Dependent Role="Municipios">
+              <PropertyRef Name="Provencias_idprovencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ordenes_Direcciones">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Ordenes">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenesDetalles_ElementosDeMenu">
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="1" />
+          <End Role="OrdenesDetalles" Type="Self.OrdenesDetalles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElementosDeMenu">
+              <PropertyRef Name="idElemento" />
+            </Principal>
+            <Dependent Role="OrdenesDetalles">
+              <PropertyRef Name="idElementosDeMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenesDetalles_Ordenes">
+          <End Role="Ordenes" Type="Self.Ordenes" Multiplicity="1" />
+          <End Role="OrdenesDetalles" Type="Self.OrdenesDetalles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ordenes">
+              <PropertyRef Name="idOrden" />
+            </Principal>
+            <Dependent Role="OrdenesDetalles">
+              <PropertyRef Name="idOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_Direcciones">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="1" />
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Platos_TiposPlatos">
+          <End Role="TiposPlatos" Type="Self.TiposPlatos" Multiplicity="1" />
+          <End Role="Platos" Type="Self.Platos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposPlatos">
+              <PropertyRef Name="idTipoPlato" />
+            </Principal>
+            <Dependent Role="Platos">
+              <PropertyRef Name="idTipoPlato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Provencia_Pais">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Provencias" Type="Self.Provencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="Provencias">
+              <PropertyRef Name="Pais_idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sucursal_Direcciones">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="1" />
+          <End Role="Sucursales" Type="Self.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersRoles_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersRoles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zonas_Municipios">
+          <End Role="Municipios" Type="Self.Municipios" Multiplicity="1" />
+          <End Role="Zonas" Type="Self.Zonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipios">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="chikitoexpressModelStoreContainer">
+          <EntitySet Name="Administradores" EntityType="Self.Administradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articulos" EntityType="Self.Articulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bebidas" EntityType="Self.Bebidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriaArticulos" EntityType="Self.CategoriaArticulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Descuentos" EntityType="Self.Descuentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElementosDeMenu" EntityType="Self.ElementosDeMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnvioDestino" EntityType="Self.EnvioDestino" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnvioOrigin" EntityType="Self.EnvioOrigin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Envios" EntityType="Self.Envios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturaEnvios" EntityType="Self.FacturaEnvios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Municipios" EntityType="Self.Municipios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ordenes" EntityType="Self.Ordenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenesDetalles" EntityType="Self.OrdenesDetalles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platos" EntityType="Self.Platos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provencias" EntityType="Self.Provencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sucursales" EntityType="Self.Sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposBebidas" EntityType="Self.TiposBebidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposPlatos" EntityType="Self.TiposPlatos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zonas" EntityType="Self.Zonas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewAdministradores" EntityType="Self.ViewAdministradores" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewAdministradores].[idAdm] AS [idAdm], 
+    [ViewAdministradores].[Documento] AS [Documento], 
+    [ViewAdministradores].[idUserName] AS [idUserName], 
+    [ViewAdministradores].[Activo] AS [Activo], 
+    [ViewAdministradores].[primerNombre] AS [primerNombre], 
+    [ViewAdministradores].[segundoNombre] AS [segundoNombre], 
+    [ViewAdministradores].[primerApellido] AS [primerApellido], 
+    [ViewAdministradores].[segundoApellido] AS [segundoApellido], 
+    [ViewAdministradores].[fechaNacimiento] AS [fechaNacimiento], 
+    [ViewAdministradores].[salario] AS [salario], 
+    [ViewAdministradores].[email] AS [email], 
+    [ViewAdministradores].[telefono] AS [telefono], 
+    [ViewAdministradores].[calle] AS [calle], 
+    [ViewAdministradores].[Edificio] AS [Edificio], 
+    [ViewAdministradores].[Apt] AS [Apt], 
+    [ViewAdministradores].[casa] AS [casa], 
+    [ViewAdministradores].[Zona] AS [Zona], 
+    [ViewAdministradores].[loginEstado] AS [loginEstado]
+    FROM [dbo].[ViewAdministradores] AS [ViewAdministradores]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewClientes" EntityType="Self.ViewClientes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewClientes].[idCliente] AS [idCliente], 
+    [ViewClientes].[Username] AS [Username], 
+    [ViewClientes].[Documento] AS [Documento], 
+    [ViewClientes].[primerNombre] AS [primerNombre], 
+    [ViewClientes].[segundoNombre] AS [segundoNombre], 
+    [ViewClientes].[primerApellido] AS [primerApellido], 
+    [ViewClientes].[segundoApellido] AS [segundoApellido], 
+    [ViewClientes].[telefono] AS [telefono], 
+    [ViewClientes].[nacionalidad] AS [nacionalidad], 
+    [ViewClientes].[fechaNacimiento] AS [fechaNacimiento], 
+    [ViewClientes].[email] AS [email], 
+    [ViewClientes].[calle] AS [calle], 
+    [ViewClientes].[Edificio] AS [Edificio], 
+    [ViewClientes].[Apt] AS [Apt], 
+    [ViewClientes].[casa] AS [casa], 
+    [ViewClientes].[nombre] AS [nombre], 
+    [ViewClientes].[Activo] AS [Activo], 
+    [ViewClientes].[Online] AS [Online], 
+    [ViewClientes].[Roles] AS [Roles]
+    FROM [dbo].[ViewClientes] AS [ViewClientes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewEmpleados" EntityType="Self.ViewEmpleados" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEmpleados].[idEmpleado] AS [idEmpleado], 
+    [ViewEmpleados].[Username] AS [Username], 
+    [ViewEmpleados].[Documento] AS [Documento], 
+    [ViewEmpleados].[primerNombre] AS [primerNombre], 
+    [ViewEmpleados].[segundoNombre] AS [segundoNombre], 
+    [ViewEmpleados].[primerApellido] AS [primerApellido], 
+    [ViewEmpleados].[segundoApellido] AS [segundoApellido], 
+    [ViewEmpleados].[telefono] AS [telefono], 
+    [ViewEmpleados].[nacionalidad] AS [nacionalidad], 
+    [ViewEmpleados].[fechaNacimiento] AS [fechaNacimiento], 
+    [ViewEmpleados].[email] AS [email], 
+    [ViewEmpleados].[calle] AS [calle], 
+    [ViewEmpleados].[Edificio] AS [Edificio], 
+    [ViewEmpleados].[Apt] AS [Apt], 
+    [ViewEmpleados].[casa] AS [casa], 
+    [ViewEmpleados].[nombre] AS [nombre], 
+    [ViewEmpleados].[salario] AS [salario], 
+    [ViewEmpleados].[Activo] AS [Activo], 
+    [ViewEmpleados].[Online] AS [Online], 
+    [ViewEmpleados].[Roles] AS [Roles]
+    FROM [dbo].[ViewEmpleados] AS [ViewEmpleados]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewEnvios" EntityType="Self.ViewEnvios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewEnvios].[idEnvio] AS [idEnvio], 
+    [ViewEnvios].[estadoSolicitud] AS [estadoSolicitud], 
+    [ViewEnvios].[Origin] AS [Origin], 
+    [ViewEnvios].[Destino] AS [Destino]
+    FROM [dbo].[ViewEnvios] AS [ViewEnvios]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewFacturas" EntityType="Self.ViewFacturas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewFacturas].[idFacturas] AS [idFacturas], 
+    [ViewFacturas].[idCliente] AS [idCliente], 
+    [ViewFacturas].[idEmpleado] AS [idEmpleado], 
+    [ViewFacturas].[telefono] AS [telefono], 
+    [ViewFacturas].[primerNombre] AS [primerNombre], 
+    [ViewFacturas].[calle] AS [calle], 
+    [ViewFacturas].[Edificio] AS [Edificio], 
+    [ViewFacturas].[Apt] AS [Apt], 
+    [ViewFacturas].[casa] AS [casa], 
+    [ViewFacturas].[Zona] AS [Zona], 
+    [ViewFacturas].[Bebida] AS [Bebida], 
+    [ViewFacturas].[deliveryOpcion] AS [deliveryOpcion], 
+    [ViewFacturas].[BebidaPrecio] AS [BebidaPrecio], 
+    [ViewFacturas].[Plato] AS [Plato], 
+    [ViewFacturas].[Platoprecio] AS [Platoprecio]
+    FROM [dbo].[ViewFacturas] AS [ViewFacturas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewFacturasEnvios" EntityType="Self.ViewFacturasEnvios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewFacturasEnvios].[idFactura] AS [idFactura], 
+    [ViewFacturasEnvios].[costoEnvio] AS [costoEnvio], 
+    [ViewFacturasEnvios].[idEnvio] AS [idEnvio], 
+    [ViewFacturasEnvios].[nombreDestinatario] AS [nombreDestinatario], 
+    [ViewFacturasEnvios].[nombreRemitente] AS [nombreRemitente], 
+    [ViewFacturasEnvios].[Valor] AS [Valor], 
+    [ViewFacturasEnvios].[descripcionArticulo] AS [descripcionArticulo], 
+    [ViewFacturasEnvios].[cantidadArticulo] AS [cantidadArticulo], 
+    [ViewFacturasEnvios].[categoria] AS [categoria]
+    FROM [dbo].[ViewFacturasEnvios] AS [ViewFacturasEnvios]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Administradores_Personas" Association="Self.Administradores_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="Administradores_Users" Association="Self.Administradores_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="Articulo_CategoriaArticulo" Association="Self.Articulo_CategoriaArticulo">
+            <End Role="CategoriaArticulos" EntitySet="CategoriaArticulos" />
+            <End Role="Articulos" EntitySet="Articulos" />
+          </AssociationSet>
+          <AssociationSet Name="Bebidas_TiposBebidas" Association="Self.Bebidas_TiposBebidas">
+            <End Role="TiposBebidas" EntitySet="TiposBebidas" />
+            <End Role="Bebidas" EntitySet="Bebidas" />
+          </AssociationSet>
+          <AssociationSet Name="Clientes_Personas" Association="Self.Clientes_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="Clientes_Users" Association="Self.Clientes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="Direcciones_Zonas" Association="Self.Direcciones_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Bebidas" Association="Self.ElementosDeMenu_Bebidas">
+            <End Role="Bebidas" EntitySet="Bebidas" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenu" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Menu" Association="Self.ElementosDeMenu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenu" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Platos" Association="Self.ElementosDeMenu_Platos">
+            <End Role="Platos" EntitySet="Platos" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenu" />
+          </AssociationSet>
+          <AssociationSet Name="Empleados_Personas" Association="Self.Empleados_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="Empleados_Users" Association="Self.Empleados_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="Envio_Articulo" Association="Self.Envio_Articulo">
+            <End Role="Articulos" EntitySet="Articulos" />
+            <End Role="Envios" EntitySet="Envios" />
+          </AssociationSet>
+          <AssociationSet Name="Envio_Clientes" Association="Self.Envio_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Envios" EntitySet="Envios" />
+          </AssociationSet>
+          <AssociationSet Name="EnvioDestino_Envios" Association="Self.EnvioDestino_Envios">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="EnvioDestino" EntitySet="EnvioDestino" />
+          </AssociationSet>
+          <AssociationSet Name="EnvioDestino_Sucursales" Association="Self.EnvioDestino_Sucursales">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="EnvioDestino" EntitySet="EnvioDestino" />
+          </AssociationSet>
+          <AssociationSet Name="Envios_Sucursales_Envio" Association="Self.Envios_Sucursales_Envio">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="EnvioOrigin" EntitySet="EnvioOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="Envios_Sucursales_Sucursal" Association="Self.Envios_Sucursales_Sucursal">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="EnvioOrigin" EntitySet="EnvioOrigin" />
+          </AssociationSet>
+          <AssociationSet Name="FacturaEnvio_Envio" Association="Self.FacturaEnvio_Envio">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="FacturaEnvios" EntitySet="FacturaEnvios" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Clientes" Association="Self.Facturas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Descuentos" Association="Self.Facturas_Descuentos">
+            <End Role="Descuentos" EntitySet="Descuentos" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Empleados" Association="Self.Facturas_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Ordenes" Association="Self.Facturas_Ordenes">
+            <End Role="Ordenes" EntitySet="Ordenes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Municipios_Provencias" Association="Self.Municipios_Provencias">
+            <End Role="Provencias" EntitySet="Provencias" />
+            <End Role="Municipios" EntitySet="Municipios" />
+          </AssociationSet>
+          <AssociationSet Name="Ordenes_Direcciones" Association="Self.Ordenes_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Ordenes" EntitySet="Ordenes" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenesDetalles_ElementosDeMenu" Association="Self.OrdenesDetalles_ElementosDeMenu">
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenu" />
+            <End Role="OrdenesDetalles" EntitySet="OrdenesDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenesDetalles_Ordenes" Association="Self.OrdenesDetalles_Ordenes">
+            <End Role="Ordenes" EntitySet="Ordenes" />
+            <End Role="OrdenesDetalles" EntitySet="OrdenesDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Direcciones" Association="Self.Personas_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="Platos_TiposPlatos" Association="Self.Platos_TiposPlatos">
+            <End Role="TiposPlatos" EntitySet="TiposPlatos" />
+            <End Role="Platos" EntitySet="Platos" />
+          </AssociationSet>
+          <AssociationSet Name="Provencia_Pais" Association="Self.Provencia_Pais">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Provencias" EntitySet="Provencias" />
+          </AssociationSet>
+          <AssociationSet Name="Sucursal_Direcciones" Association="Self.Sucursal_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRoles_Roles" Association="Self.UsersRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRoles_Users" Association="Self.UsersRoles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Zonas_Municipios" Association="Self.Zonas_Municipios">
+            <End Role="Municipios" EntitySet="Municipios" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="chikitoexpressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administradore">
+          <Key>
+            <PropertyRef Name="idAdm" />
+          </Key>
+          <Property Name="idAdm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="salario" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModicacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.Administradores_Personas" FromRole="Administradores" ToRole="Personas" />
+          <NavigationProperty Name="User" Relationship="Self.Administradores_Users" FromRole="Administradores" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="Int32" Nullable="false" />
+          <Property Name="descripcionArticulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pesoArticulo" Type="Int32" Nullable="false" />
+          <Property Name="cantidadArticulo" Type="Int32" Nullable="false" />
+          <Property Name="idCategoriaArticulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriaArticulo" Relationship="Self.Articulo_CategoriaArticulo" FromRole="Articulos" ToRole="CategoriaArticulos" />
+          <NavigationProperty Name="Envios" Relationship="Self.Envio_Articulo" FromRole="Articulos" ToRole="Envios" />
+        </EntityType>
+        <EntityType Name="Bebida">
+          <Key>
+            <PropertyRef Name="idBebida" />
+          </Key>
+          <Property Name="idBebida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoBebida" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TiposBebida" Relationship="Self.Bebidas_TiposBebidas" FromRole="Bebidas" ToRole="TiposBebidas" />
+          <NavigationProperty Name="ElementosDeMenus" Relationship="Self.ElementosDeMenu_Bebidas" FromRole="Bebidas" ToRole="ElementosDeMenu" />
+        </EntityType>
+        <EntityType Name="CategoriaArticulo">
+          <Key>
+            <PropertyRef Name="idArticulo" />
+          </Key>
+          <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Articulos" Relationship="Self.Articulo_CategoriaArticulo" FromRole="CategoriaArticulos" ToRole="Articulos" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="puntoFidelizacion" Type="Int32" />
+          <Property Name="fechaUltimoCompra" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.Clientes_Personas" FromRole="Clientes" ToRole="Personas" />
+          <NavigationProperty Name="User" Relationship="Self.Clientes_Users" FromRole="Clientes" ToRole="Users" />
+          <NavigationProperty Name="Envios" Relationship="Self.Envio_Clientes" FromRole="Clientes" ToRole="Envios" />
+          <NavigationProperty Name="Facturas" Relationship="Self.Facturas_Clientes" FromRole="Clientes" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Descuento">
+          <Key>
+            <PropertyRef Name="idDescuentos" />
+          </Key>
+          <Property Name="idDescuentos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="porcentage" Type="Decimal" Precision="1" Scale="1" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.Facturas_Descuentos" FromRole="Descuentos" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Direccione">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idZona" Type="Int32" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="casa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zona" Relationship="Self.Direcciones_Zonas" FromRole="Direcciones" ToRole="Zonas" />
+          <NavigationProperty Name="Ordenes" Relationship="Self.Ordenes_Direcciones" FromRole="Direcciones" ToRole="Ordenes" />
+          <NavigationProperty Name="Personas" Relationship="Self.Personas_Direcciones" FromRole="Direcciones" ToRole="Personas" />
+          <NavigationProperty Name="Sucursales" Relationship="Self.Sucursal_Direcciones" FromRole="Direcciones" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="ElementosDeMenu">
+          <Key>
+            <PropertyRef Name="idElemento" />
+          </Key>
+          <Property Name="idElemento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBebida" Type="Int32" />
+          <Property Name="idMenu" Type="Int32" Nullable="false" />
+          <Property Name="idPlato" Type="Int32" />
+          <Property Name="disponible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bebida" Relationship="Self.ElementosDeMenu_Bebidas" FromRole="ElementosDeMenu" ToRole="Bebidas" />
+          <NavigationProperty Name="Menu" Relationship="Self.ElementosDeMenu_Menu" FromRole="ElementosDeMenu" ToRole="Menu" />
+          <NavigationProperty Name="Plato" Relationship="Self.ElementosDeMenu_Platos" FromRole="ElementosDeMenu" ToRole="Platos" />
+          <NavigationProperty Name="OrdenesDetalles" Relationship="Self.OrdenesDetalles_ElementosDeMenu" FromRole="ElementosDeMenu" ToRole="OrdenesDetalles" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salario" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.Empleados_Personas" FromRole="Empleados" ToRole="Personas" />
+          <NavigationProperty Name="User" Relationship="Self.Empleados_Users" FromRole="Empleados" ToRole="Users" />
+          <NavigationProperty Name="Facturas" Relationship="Self.Facturas_Empleados" FromRole="Empleados" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="EnvioDestino">
+          <Key>
+            <PropertyRef Name="idDestino" />
+          </Key>
+          <Property Name="idDestino" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEnvio" Type="Int32" Nullable="false" />
+          <Property Name="idSucursal" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Envio" Relationship="Self.EnvioDestino_Envios" FromRole="EnvioDestino" ToRole="Envios" />
+          <NavigationProperty Name="Sucursale" Relationship="Self.EnvioDestino_Sucursales" FromRole="EnvioDestino" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="EnvioOrigin">
+          <Key>
+            <PropertyRef Name="idOrigin" />
+          </Key>
+          <Property Name="idOrigin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEnvio" Type="Int32" Nullable="false" />
+          <Property Name="idSucursal" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Envio" Relationship="Self.Envios_Sucursales_Envio" FromRole="EnvioOrigin" ToRole="Envios" />
+          <NavigationProperty Name="Sucursale" Relationship="Self.Envios_Sucursales_Sucursal" FromRole="EnvioOrigin" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="Envio">
+          <Key>
+            <PropertyRef Name="idEnvio" />
+          </Key>
+          <Property Name="idEnvio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreDestinatario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreRemitente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoSolicitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idArticulo" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.Envio_Articulo" FromRole="Envios" ToRole="Articulos" />
+          <NavigationProperty Name="Cliente" Relationship="Self.Envio_Clientes" FromRole="Envios" ToRole="Clientes" />
+          <NavigationProperty Name="EnvioDestinoes" Relationship="Self.EnvioDestino_Envios" FromRole="Envios" ToRole="EnvioDestino" />
+          <NavigationProperty Name="EnvioOrigins" Relationship="Self.Envios_Sucursales_Envio" FromRole="Envios" ToRole="EnvioOrigin" />
+          <NavigationProperty Name="FacturaEnvios" Relationship="Self.FacturaEnvio_Envio" FromRole="Envios" ToRole="FacturaEnvios" />
+        </EntityType>
+        <EntityType Name="FacturaEnvio">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="costoEnvio" Type="Int32" Nullable="false" />
+          <Property Name="estadoFactura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEnvio" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Envio" Relationship="Self.FacturaEnvio_Envio" FromRole="FacturaEnvios" ToRole="Envios" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="idFacturas" />
+          </Key>
+          <Property Name="idFacturas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idDescuentos" Type="Int32" />
+          <Property Name="idOrden" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.Facturas_Clientes" FromRole="Facturas" ToRole="Clientes" />
+          <NavigationProperty Name="Descuento" Relationship="Self.Facturas_Descuentos" FromRole="Facturas" ToRole="Descuentos" />
+          <NavigationProperty Name="Empleado" Relationship="Self.Facturas_Empleados" FromRole="Facturas" ToRole="Empleados" />
+          <NavigationProperty Name="Ordene" Relationship="Self.Facturas_Ordenes" FromRole="Facturas" ToRole="Ordenes" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ElementosDeMenus" Relationship="Self.ElementosDeMenu_Menu" FromRole="Menu" ToRole="ElementosDeMenu" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provencias_idprovencia" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Provencia" Relationship="Self.Municipios_Provencias" FromRole="Municipios" ToRole="Provencias" />
+          <NavigationProperty Name="Zonas" Relationship="Self.Zonas_Municipios" FromRole="Municipios" ToRole="Zonas" />
+        </EntityType>
+        <EntityType Name="Ordene">
+          <Key>
+            <PropertyRef Name="idOrden" />
+          </Key>
+          <Property Name="idOrden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDireccion" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deliveryOpcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precioTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Direccione" Relationship="Self.Ordenes_Direcciones" FromRole="Ordenes" ToRole="Direcciones" />
+          <NavigationProperty Name="Facturas" Relationship="Self.Facturas_Ordenes" FromRole="Ordenes" ToRole="Facturas" />
+          <NavigationProperty Name="OrdenesDetalles" Relationship="Self.OrdenesDetalles_Ordenes" FromRole="Ordenes" ToRole="OrdenesDetalles" />
+        </EntityType>
+        <EntityType Name="OrdenesDetalle">
+          <Key>
+            <PropertyRef Name="idOrdenDetalle" />
+          </Key>
+          <Property Name="idOrdenDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrden" Type="Int32" Nullable="false" />
+          <Property Name="idElementosDeMenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ElementosDeMenu" Relationship="Self.OrdenesDetalles_ElementosDeMenu" FromRole="OrdenesDetalles" ToRole="ElementosDeMenu" />
+          <NavigationProperty Name="Ordene" Relationship="Self.OrdenesDetalles_Ordenes" FromRole="OrdenesDetalles" ToRole="Ordenes" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idpais" />
+          </Key>
+          <Property Name="idpais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Provencias" Relationship="Self.Provencia_Pais" FromRole="Paises" ToRole="Provencias" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Administradores" Relationship="Self.Administradores_Personas" FromRole="Personas" ToRole="Administradores" />
+          <NavigationProperty Name="Clientes" Relationship="Self.Clientes_Personas" FromRole="Personas" ToRole="Clientes" />
+          <NavigationProperty Name="Direccione" Relationship="Self.Personas_Direcciones" FromRole="Personas" ToRole="Direcciones" />
+          <NavigationProperty Name="Empleados" Relationship="Self.Empleados_Personas" FromRole="Personas" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="Plato">
+          <Key>
+            <PropertyRef Name="idPlato" />
+          </Key>
+          <Property Name="idPlato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoPlato" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ElementosDeMenus" Relationship="Self.ElementosDeMenu_Platos" FromRole="Platos" ToRole="ElementosDeMenu" />
+          <NavigationProperty Name="TiposPlato" Relationship="Self.Platos_TiposPlatos" FromRole="Platos" ToRole="TiposPlatos" />
+        </EntityType>
+        <EntityType Name="Provencia">
+          <Key>
+            <PropertyRef Name="idprovencia" />
+          </Key>
+          <Property Name="idprovencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pais_idpais" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Municipios" Relationship="Self.Municipios_Provencias" FromRole="Provencias" ToRole="Municipios" />
+          <NavigationProperty Name="Pais" Relationship="Self.Provencia_Pais" FromRole="Provencias" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="accesso" Type="Boolean" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UsersRoles" Relationship="Self.UsersRoles_Roles" FromRole="Roles" ToRole="UsersRoles" />
+        </EntityType>
+        <EntityType Name="Sucursale">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Direccione" Relationship="Self.Sucursal_Direcciones" FromRole="Sucursales" ToRole="Direcciones" />
+          <NavigationProperty Name="EnvioDestinoes" Relationship="Self.EnvioDestino_Sucursales" FromRole="Sucursales" ToRole="EnvioDestino" />
+          <NavigationProperty Name="EnvioOrigins" Relationship="Self.Envios_Sucursales_Sucursal" FromRole="Sucursales" ToRole="EnvioOrigin" />
+        </EntityType>
+        <EntityType Name="TiposBebida">
+          <Key>
+            <PropertyRef Name="idTipoBebida" />
+          </Key>
+          <Property Name="idTipoBebida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bebidas" Relationship="Self.Bebidas_TiposBebidas" FromRole="TiposBebidas" ToRole="Bebidas" />
+        </EntityType>
+        <EntityType Name="TiposPlato">
+          <Key>
+            <PropertyRef Name="idTipoPlato" />
+          </Key>
+          <Property Name="idTipoPlato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Platos" Relationship="Self.Platos_TiposPlatos" FromRole="TiposPlatos" ToRole="Platos" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loginEstado" Type="Boolean" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Administradores" Relationship="Self.Administradores_Users" FromRole="Users" ToRole="Administradores" />
+          <NavigationProperty Name="Clientes" Relationship="Self.Clientes_Users" FromRole="Users" ToRole="Clientes" />
+          <NavigationProperty Name="Empleados" Relationship="Self.Empleados_Users" FromRole="Users" ToRole="Empleados" />
+          <NavigationProperty Name="UsersRoles" Relationship="Self.UsersRoles_Users" FromRole="Users" ToRole="UsersRoles" />
+        </EntityType>
+        <EntityType Name="UsersRole">
+          <Key>
+            <PropertyRef Name="idUserRole" />
+          </Key>
+          <Property Name="idUserRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.UsersRoles_Roles" FromRole="UsersRoles" ToRole="Roles" />
+          <NavigationProperty Name="User" Relationship="Self.UsersRoles_Users" FromRole="UsersRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Zona">
+          <Key>
+            <PropertyRef Name="idZona" />
+          </Key>
+          <Property Name="idZona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaModicacion" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.Direcciones_Zonas" FromRole="Zonas" ToRole="Direcciones" />
+          <NavigationProperty Name="Municipio" Relationship="Self.Zonas_Municipios" FromRole="Zonas" ToRole="Municipios" />
+        </EntityType>
+        <EntityType Name="ViewAdministradore">
+          <Key>
+            <PropertyRef Name="idAdm" />
+            <PropertyRef Name="idUserName" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="salario" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="Zona" />
+            <PropertyRef Name="loginEstado" />
+          </Key>
+          <Property Name="idAdm" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="salario" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="casa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Zona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loginEstado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewCliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Online" />
+            <PropertyRef Name="Roles" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="casa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Online" Type="Boolean" Nullable="false" />
+          <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewEmpleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="primerApellido" />
+            <PropertyRef Name="fechaNacimiento" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="salario" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Online" />
+            <PropertyRef Name="Roles" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="casa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="salario" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Online" Type="Boolean" Nullable="false" />
+          <Property Name="Roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewEnvio">
+          <Key>
+            <PropertyRef Name="idEnvio" />
+            <PropertyRef Name="estadoSolicitud" />
+            <PropertyRef Name="Origin" />
+            <PropertyRef Name="Destino" />
+          </Key>
+          <Property Name="idEnvio" Type="Int32" Nullable="false" />
+          <Property Name="estadoSolicitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Origin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Destino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewFactura">
+          <Key>
+            <PropertyRef Name="idFacturas" />
+            <PropertyRef Name="idCliente" />
+            <PropertyRef Name="idEmpleado" />
+            <PropertyRef Name="primerNombre" />
+            <PropertyRef Name="calle" />
+            <PropertyRef Name="Zona" />
+            <PropertyRef Name="Bebida" />
+            <PropertyRef Name="deliveryOpcion" />
+            <PropertyRef Name="BebidaPrecio" />
+            <PropertyRef Name="Plato" />
+            <PropertyRef Name="Platoprecio" />
+          </Key>
+          <Property Name="idFacturas" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="casa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Zona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bebida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deliveryOpcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BebidaPrecio" Type="Int32" Nullable="false" />
+          <Property Name="Plato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Platoprecio" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewFacturasEnvio">
+          <Key>
+            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="costoEnvio" />
+            <PropertyRef Name="idEnvio" />
+            <PropertyRef Name="nombreDestinatario" />
+            <PropertyRef Name="nombreRemitente" />
+            <PropertyRef Name="Valor" />
+            <PropertyRef Name="descripcionArticulo" />
+            <PropertyRef Name="cantidadArticulo" />
+            <PropertyRef Name="categoria" />
+          </Key>
+          <Property Name="idFactura" Type="Int32" Nullable="false" />
+          <Property Name="costoEnvio" Type="Int32" Nullable="false" />
+          <Property Name="idEnvio" Type="Int32" Nullable="false" />
+          <Property Name="nombreDestinatario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreRemitente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="descripcionArticulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidadArticulo" Type="Int32" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="Administradores_Personas">
+          <End Role="Personas" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Administradores_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Administradores" Type="Self.Administradore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Administradores">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Articulo_CategoriaArticulo">
+          <End Role="CategoriaArticulos" Type="Self.CategoriaArticulo" Multiplicity="1" />
+          <End Role="Articulos" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaArticulos">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="Articulos">
+              <PropertyRef Name="idCategoriaArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envio_Articulo">
+          <End Role="Articulos" Type="Self.Articulo" Multiplicity="1" />
+          <End Role="Envios" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Articulos">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="Envios">
+              <PropertyRef Name="idArticulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bebidas_TiposBebidas">
+          <End Role="TiposBebidas" Type="Self.TiposBebida" Multiplicity="1" />
+          <End Role="Bebidas" Type="Self.Bebida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposBebidas">
+              <PropertyRef Name="idTipoBebida" />
+            </Principal>
+            <Dependent Role="Bebidas">
+              <PropertyRef Name="idTipoBebida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Bebidas">
+          <End Role="Bebidas" Type="Self.Bebida" Multiplicity="0..1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bebidas">
+              <PropertyRef Name="idBebida" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idBebida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Clientes_Personas">
+          <End Role="Personas" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Clientes_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envio_Clientes">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Envios" Type="Self.Envio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Envios">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Clientes">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Descuentos">
+          <End Role="Descuentos" Type="Self.Descuento" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Descuentos">
+              <PropertyRef Name="idDescuentos" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idDescuentos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Direcciones_Zonas">
+          <End Role="Zonas" Type="Self.Zona" Multiplicity="1" />
+          <End Role="Direcciones" Type="Self.Direccione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="idZona" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="idZona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ordenes_Direcciones">
+          <End Role="Direcciones" Type="Self.Direccione" Multiplicity="0..1" />
+          <End Role="Ordenes" Type="Self.Ordene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Ordenes">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_Direcciones">
+          <End Role="Direcciones" Type="Self.Direccione" Multiplicity="1" />
+          <End Role="Personas" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sucursal_Direcciones">
+          <End Role="Direcciones" Type="Self.Direccione" Multiplicity="1" />
+          <End Role="Sucursales" Type="Self.Sucursale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="idDireccion" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="idDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementosDeMenu_Platos">
+          <End Role="Platos" Type="Self.Plato" Multiplicity="0..1" />
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platos">
+              <PropertyRef Name="idPlato" />
+            </Principal>
+            <Dependent Role="ElementosDeMenu">
+              <PropertyRef Name="idPlato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenesDetalles_ElementosDeMenu">
+          <End Role="ElementosDeMenu" Type="Self.ElementosDeMenu" Multiplicity="1" />
+          <End Role="OrdenesDetalles" Type="Self.OrdenesDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElementosDeMenu">
+              <PropertyRef Name="idElemento" />
+            </Principal>
+            <Dependent Role="OrdenesDetalles">
+              <PropertyRef Name="idElementosDeMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Empleados_Personas">
+          <End Role="Personas" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Empleados_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Empleados">
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvioDestino_Envios">
+          <End Role="Envios" Type="Self.Envio" Multiplicity="1" />
+          <End Role="EnvioDestino" Type="Self.EnvioDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="EnvioDestino">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvioDestino_Sucursales">
+          <End Role="Sucursales" Type="Self.Sucursale" Multiplicity="1" />
+          <End Role="EnvioDestino" Type="Self.EnvioDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="EnvioDestino">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envios_Sucursales_Envio">
+          <End Role="Envios" Type="Self.Envio" Multiplicity="1" />
+          <End Role="EnvioOrigin" Type="Self.EnvioOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="EnvioOrigin">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Envios_Sucursales_Sucursal">
+          <End Role="Sucursales" Type="Self.Sucursale" Multiplicity="1" />
+          <End Role="EnvioOrigin" Type="Self.EnvioOrigin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="EnvioOrigin">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FacturaEnvio_Envio">
+          <End Role="Envios" Type="Self.Envio" Multiplicity="1" />
+          <End Role="FacturaEnvios" Type="Self.FacturaEnvio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Envios">
+              <PropertyRef Name="idEnvio" />
+            </Principal>
+            <Dependent Role="FacturaEnvios">
+              <PropertyRef Name="idEnvio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Facturas_Ordenes">
+          <End Role="Ordenes" Type="Self.Ordene" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ordenes">
+              <PropertyRef Name="idOrden" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="idOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Municipios_Provencias">
+          <End Role="Provencias" Type="Self.Provencia" Multiplicity="1" />
+          <End Role="Municipios" Type="Self.Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provencias">
+              <PropertyRef Name="idprovencia" />
+            </Principal>
+            <Dependent Role="Municipios">
+              <PropertyRef Name="Provencias_idprovencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zonas_Municipios">
+          <End Role="Municipios" Type="Self.Municipio" Multiplicity="1" />
+          <End Role="Zonas" Type="Self.Zona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipios">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenesDetalles_Ordenes">
+          <End Role="Ordenes" Type="Self.Ordene" Multiplicity="1" />
+          <End Role="OrdenesDetalles" Type="Self.OrdenesDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ordenes">
+              <PropertyRef Name="idOrden" />
+            </Principal>
+            <Dependent Role="OrdenesDetalles">
+              <PropertyRef Name="idOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Provencia_Pais">
+          <End Role="Paises" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Provencias" Type="Self.Provencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="Provencias">
+              <PropertyRef Name="Pais_idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Platos_TiposPlatos">
+          <End Role="TiposPlatos" Type="Self.TiposPlato" Multiplicity="1" />
+          <End Role="Platos" Type="Self.Plato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposPlatos">
+              <PropertyRef Name="idTipoPlato" />
+            </Principal>
+            <Dependent Role="Platos">
+              <PropertyRef Name="idTipoPlato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersRoles_Roles">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersRoles_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChikitoExpressContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administradores" EntityType="Self.Administradore" />
+          <EntitySet Name="Articulos" EntityType="Self.Articulo" />
+          <EntitySet Name="Bebidas" EntityType="Self.Bebida" />
+          <EntitySet Name="CategoriaArticulos" EntityType="Self.CategoriaArticulo" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Descuentos" EntityType="Self.Descuento" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direccione" />
+          <EntitySet Name="ElementosDeMenus" EntityType="Self.ElementosDeMenu" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+          <EntitySet Name="EnvioDestinoes" EntityType="Self.EnvioDestino" />
+          <EntitySet Name="EnvioOrigins" EntityType="Self.EnvioOrigin" />
+          <EntitySet Name="Envios" EntityType="Self.Envio" />
+          <EntitySet Name="FacturaEnvios" EntityType="Self.FacturaEnvio" />
+          <EntitySet Name="Facturas" EntityType="Self.Factura" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="Municipios" EntityType="Self.Municipio" />
+          <EntitySet Name="Ordenes" EntityType="Self.Ordene" />
+          <EntitySet Name="OrdenesDetalles" EntityType="Self.OrdenesDetalle" />
+          <EntitySet Name="Paises" EntityType="Self.Pais" />
+          <EntitySet Name="Personas" EntityType="Self.Persona" />
+          <EntitySet Name="Platos" EntityType="Self.Plato" />
+          <EntitySet Name="Provencias" EntityType="Self.Provencia" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sucursales" EntityType="Self.Sucursale" />
+          <EntitySet Name="TiposBebidas" EntityType="Self.TiposBebida" />
+          <EntitySet Name="TiposPlatos" EntityType="Self.TiposPlato" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRole" />
+          <EntitySet Name="Zonas" EntityType="Self.Zona" />
+          <EntitySet Name="ViewAdministradores" EntityType="Self.ViewAdministradore" />
+          <EntitySet Name="ViewClientes" EntityType="Self.ViewCliente" />
+          <EntitySet Name="ViewEmpleados" EntityType="Self.ViewEmpleado" />
+          <EntitySet Name="ViewEnvios" EntityType="Self.ViewEnvio" />
+          <EntitySet Name="ViewFacturas" EntityType="Self.ViewFactura" />
+          <EntitySet Name="ViewFacturasEnvios" EntityType="Self.ViewFacturasEnvio" />
+          <AssociationSet Name="Administradores_Personas" Association="Self.Administradores_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="Administradores_Users" Association="Self.Administradores_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Administradores" EntitySet="Administradores" />
+          </AssociationSet>
+          <AssociationSet Name="Articulo_CategoriaArticulo" Association="Self.Articulo_CategoriaArticulo">
+            <End Role="CategoriaArticulos" EntitySet="CategoriaArticulos" />
+            <End Role="Articulos" EntitySet="Articulos" />
+          </AssociationSet>
+          <AssociationSet Name="Envio_Articulo" Association="Self.Envio_Articulo">
+            <End Role="Articulos" EntitySet="Articulos" />
+            <End Role="Envios" EntitySet="Envios" />
+          </AssociationSet>
+          <AssociationSet Name="Bebidas_TiposBebidas" Association="Self.Bebidas_TiposBebidas">
+            <End Role="TiposBebidas" EntitySet="TiposBebidas" />
+            <End Role="Bebidas" EntitySet="Bebidas" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Bebidas" Association="Self.ElementosDeMenu_Bebidas">
+            <End Role="Bebidas" EntitySet="Bebidas" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenus" />
+          </AssociationSet>
+          <AssociationSet Name="Clientes_Personas" Association="Self.Clientes_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="Clientes_Users" Association="Self.Clientes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="Envio_Clientes" Association="Self.Envio_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Envios" EntitySet="Envios" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Clientes" Association="Self.Facturas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Descuentos" Association="Self.Facturas_Descuentos">
+            <End Role="Descuentos" EntitySet="Descuentos" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Direcciones_Zonas" Association="Self.Direcciones_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="Ordenes_Direcciones" Association="Self.Ordenes_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Ordenes" EntitySet="Ordenes" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Direcciones" Association="Self.Personas_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="Sucursal_Direcciones" Association="Self.Sucursal_Direcciones">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Menu" Association="Self.ElementosDeMenu_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenus" />
+          </AssociationSet>
+          <AssociationSet Name="ElementosDeMenu_Platos" Association="Self.ElementosDeMenu_Platos">
+            <End Role="Platos" EntitySet="Platos" />
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenus" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenesDetalles_ElementosDeMenu" Association="Self.OrdenesDetalles_ElementosDeMenu">
+            <End Role="ElementosDeMenu" EntitySet="ElementosDeMenus" />
+            <End Role="OrdenesDetalles" EntitySet="OrdenesDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="Empleados_Personas" Association="Self.Empleados_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="Empleados_Users" Association="Self.Empleados_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Empleados" Association="Self.Facturas_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="EnvioDestino_Envios" Association="Self.EnvioDestino_Envios">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="EnvioDestino" EntitySet="EnvioDestinoes" />
+          </AssociationSet>
+          <AssociationSet Name="EnvioDestino_Sucursales" Association="Self.EnvioDestino_Sucursales">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="EnvioDestino" EntitySet="EnvioDestinoes" />
+          </AssociationSet>
+          <AssociationSet Name="Envios_Sucursales_Envio" Association="Self.Envios_Sucursales_Envio">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="EnvioOrigin" EntitySet="EnvioOrigins" />
+          </AssociationSet>
+          <AssociationSet Name="Envios_Sucursales_Sucursal" Association="Self.Envios_Sucursales_Sucursal">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="EnvioOrigin" EntitySet="EnvioOrigins" />
+          </AssociationSet>
+          <AssociationSet Name="FacturaEnvio_Envio" Association="Self.FacturaEnvio_Envio">
+            <End Role="Envios" EntitySet="Envios" />
+            <End Role="FacturaEnvios" EntitySet="FacturaEnvios" />
+          </AssociationSet>
+          <AssociationSet Name="Facturas_Ordenes" Association="Self.Facturas_Ordenes">
+            <End Role="Ordenes" EntitySet="Ordenes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="Municipios_Provencias" Association="Self.Municipios_Provencias">
+            <End Role="Provencias" EntitySet="Provencias" />
+            <End Role="Municipios" EntitySet="Municipios" />
+          </AssociationSet>
+          <AssociationSet Name="Zonas_Municipios" Association="Self.Zonas_Municipios">
+            <End Role="Municipios" EntitySet="Municipios" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenesDetalles_Ordenes" Association="Self.OrdenesDetalles_Ordenes">
+            <End Role="Ordenes" EntitySet="Ordenes" />
+            <End Role="OrdenesDetalles" EntitySet="OrdenesDetalles" />
+          </AssociationSet>
+          <AssociationSet Name="Provencia_Pais" Association="Self.Provencia_Pais">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Provencias" EntitySet="Provencias" />
+          </AssociationSet>
+          <AssociationSet Name="Platos_TiposPlatos" Association="Self.Platos_TiposPlatos">
+            <End Role="TiposPlatos" EntitySet="TiposPlatos" />
+            <End Role="Platos" EntitySet="Platos" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRoles_Roles" Association="Self.UsersRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRoles_Users" Association="Self.UsersRoles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="chikitoexpressModelStoreContainer" CdmEntityContainer="ChikitoExpressContext">
+          <EntitySetMapping Name="Administradores">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Administradore">
+              <MappingFragment StoreEntitySet="Administradores">
+                <ScalarProperty Name="idAdm" ColumnName="idAdm" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModicacion" ColumnName="FechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articulos">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Articulo">
+              <MappingFragment StoreEntitySet="Articulos">
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="descripcionArticulo" ColumnName="descripcionArticulo" />
+                <ScalarProperty Name="pesoArticulo" ColumnName="pesoArticulo" />
+                <ScalarProperty Name="cantidadArticulo" ColumnName="cantidadArticulo" />
+                <ScalarProperty Name="idCategoriaArticulo" ColumnName="idCategoriaArticulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bebidas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Bebida">
+              <MappingFragment StoreEntitySet="Bebidas">
+                <ScalarProperty Name="idBebida" ColumnName="idBebida" />
+                <ScalarProperty Name="idTipoBebida" ColumnName="idTipoBebida" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriaArticulos">
+            <EntityTypeMapping TypeName="chikitoexpressModel.CategoriaArticulo">
+              <MappingFragment StoreEntitySet="CategoriaArticulos">
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="puntoFidelizacion" ColumnName="puntoFidelizacion" />
+                <ScalarProperty Name="fechaUltimoCompra" ColumnName="fechaUltimoCompra" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Descuentos">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Descuento">
+              <MappingFragment StoreEntitySet="Descuentos">
+                <ScalarProperty Name="idDescuentos" ColumnName="idDescuentos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="porcentage" ColumnName="porcentage" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="FechaModicacion" ColumnName="FechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direcciones">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Direccione">
+              <MappingFragment StoreEntitySet="Direcciones">
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="idZona" ColumnName="idZona" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apt" ColumnName="Apt" />
+                <ScalarProperty Name="casa" ColumnName="casa" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElementosDeMenus">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ElementosDeMenu">
+              <MappingFragment StoreEntitySet="ElementosDeMenu">
+                <ScalarProperty Name="idElemento" ColumnName="idElemento" />
+                <ScalarProperty Name="idBebida" ColumnName="idBebida" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+                <ScalarProperty Name="idPlato" ColumnName="idPlato" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnvioDestinoes">
+            <EntityTypeMapping TypeName="chikitoexpressModel.EnvioDestino">
+              <MappingFragment StoreEntitySet="EnvioDestino">
+                <ScalarProperty Name="idDestino" ColumnName="idDestino" />
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnvioOrigins">
+            <EntityTypeMapping TypeName="chikitoexpressModel.EnvioOrigin">
+              <MappingFragment StoreEntitySet="EnvioOrigin">
+                <ScalarProperty Name="idOrigin" ColumnName="idOrigin" />
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Envios">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Envio">
+              <MappingFragment StoreEntitySet="Envios">
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="nombreDestinatario" ColumnName="nombreDestinatario" />
+                <ScalarProperty Name="nombreRemitente" ColumnName="nombreRemitente" />
+                <ScalarProperty Name="estadoSolicitud" ColumnName="estadoSolicitud" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturaEnvios">
+            <EntityTypeMapping TypeName="chikitoexpressModel.FacturaEnvio">
+              <MappingFragment StoreEntitySet="FacturaEnvios">
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="costoEnvio" ColumnName="costoEnvio" />
+                <ScalarProperty Name="estadoFactura" ColumnName="estadoFactura" />
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Factura">
+              <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="idFacturas" ColumnName="idFacturas" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idDescuentos" ColumnName="idDescuentos" />
+                <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipios">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Municipio">
+              <MappingFragment StoreEntitySet="Municipios">
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="Provencias_idprovencia" ColumnName="Provencias_idprovencia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ordenes">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Ordene">
+              <MappingFragment StoreEntitySet="Ordenes">
+                <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="deliveryOpcion" ColumnName="deliveryOpcion" />
+                <ScalarProperty Name="precioTotal" ColumnName="precioTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenesDetalles">
+            <EntityTypeMapping TypeName="chikitoexpressModel.OrdenesDetalle">
+              <MappingFragment StoreEntitySet="OrdenesDetalles">
+                <ScalarProperty Name="idOrdenDetalle" ColumnName="idOrdenDetalle" />
+                <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+                <ScalarProperty Name="idElementosDeMenu" ColumnName="idElementosDeMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Pais">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="idpais" ColumnName="idpais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Persona">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platos">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Plato">
+              <MappingFragment StoreEntitySet="Platos">
+                <ScalarProperty Name="idPlato" ColumnName="idPlato" />
+                <ScalarProperty Name="idTipoPlato" ColumnName="idTipoPlato" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provencias">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Provencia">
+              <MappingFragment StoreEntitySet="Provencias">
+                <ScalarProperty Name="idprovencia" ColumnName="idprovencia" />
+                <ScalarProperty Name="Pais_idpais" ColumnName="Pais_idpais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="accesso" ColumnName="accesso" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursales">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Sucursale">
+              <MappingFragment StoreEntitySet="Sucursales">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposBebidas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.TiposBebida">
+              <MappingFragment StoreEntitySet="TiposBebidas">
+                <ScalarProperty Name="idTipoBebida" ColumnName="idTipoBebida" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposPlatos">
+            <EntityTypeMapping TypeName="chikitoexpressModel.TiposPlato">
+              <MappingFragment StoreEntitySet="TiposPlatos">
+                <ScalarProperty Name="idTipoPlato" ColumnName="idTipoPlato" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="chikitoexpressModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="idUserName" ColumnName="idUserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="loginEstado" ColumnName="loginEstado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRoles">
+            <EntityTypeMapping TypeName="chikitoexpressModel.UsersRole">
+              <MappingFragment StoreEntitySet="UsersRoles">
+                <ScalarProperty Name="idUserRole" ColumnName="idUserRole" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zonas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.Zona">
+              <MappingFragment StoreEntitySet="Zonas">
+                <ScalarProperty Name="idZona" ColumnName="idZona" />
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModicacion" ColumnName="fechaModicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewAdministradores">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewAdministradore">
+              <MappingFragment StoreEntitySet="ViewAdministradores">
+                <ScalarProperty Name="idAdm" ColumnName="idAdm" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="idUserName" ColumnName="idUserName" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apt" ColumnName="Apt" />
+                <ScalarProperty Name="casa" ColumnName="casa" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="loginEstado" ColumnName="loginEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewClientes">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewCliente">
+              <MappingFragment StoreEntitySet="ViewClientes">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apt" ColumnName="Apt" />
+                <ScalarProperty Name="casa" ColumnName="casa" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Online" ColumnName="Online" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEmpleados">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewEmpleado">
+              <MappingFragment StoreEntitySet="ViewEmpleados">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apt" ColumnName="Apt" />
+                <ScalarProperty Name="casa" ColumnName="casa" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Online" ColumnName="Online" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewEnvios">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewEnvio">
+              <MappingFragment StoreEntitySet="ViewEnvios">
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="estadoSolicitud" ColumnName="estadoSolicitud" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFacturas">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewFactura">
+              <MappingFragment StoreEntitySet="ViewFacturas">
+                <ScalarProperty Name="idFacturas" ColumnName="idFacturas" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apt" ColumnName="Apt" />
+                <ScalarProperty Name="casa" ColumnName="casa" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="Bebida" ColumnName="Bebida" />
+                <ScalarProperty Name="deliveryOpcion" ColumnName="deliveryOpcion" />
+                <ScalarProperty Name="BebidaPrecio" ColumnName="BebidaPrecio" />
+                <ScalarProperty Name="Plato" ColumnName="Plato" />
+                <ScalarProperty Name="Platoprecio" ColumnName="Platoprecio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFacturasEnvios">
+            <EntityTypeMapping TypeName="chikitoexpressModel.ViewFacturasEnvio">
+              <MappingFragment StoreEntitySet="ViewFacturasEnvios">
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="costoEnvio" ColumnName="costoEnvio" />
+                <ScalarProperty Name="idEnvio" ColumnName="idEnvio" />
+                <ScalarProperty Name="nombreDestinatario" ColumnName="nombreDestinatario" />
+                <ScalarProperty Name="nombreRemitente" ColumnName="nombreRemitente" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="descripcionArticulo" ColumnName="descripcionArticulo" />
+                <ScalarProperty Name="cantidadArticulo" ColumnName="cantidadArticulo" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
