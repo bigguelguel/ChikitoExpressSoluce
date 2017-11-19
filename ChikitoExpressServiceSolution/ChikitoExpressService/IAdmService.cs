@@ -16,6 +16,10 @@ namespace ChikitoExpressService
         [OperationContract]
         void PostPais(Pais pais);
         [OperationContract]
+        List<Cliente> GetCliente();
+        [OperationContract]
+        void PostClient(Cliente client);
+        [OperationContract]
         void PostMunicipio(Municipio municipio);
         [OperationContract]
         void PosProvencia(Provencia provencia);
@@ -65,6 +69,8 @@ namespace ChikitoExpressService
         #region"Update"
         [OperationContract]
         void ActualizarPais(int idPais, string Nombre, Boolean e);
+        [OperationContract]
+        void ActualizarCliente(Cliente cliente, int iduser);
         #endregion
     }
 }

@@ -37,7 +37,11 @@ namespace ChikitoExpressService
             context.SaveChanges();
         }
 
-
+        public void PostClient(Cliente client)
+        {
+            context.Clientes.Add(client);
+            context.SaveChanges();
+        }
         public void PostAdministrador(Administradore adm)
         {
             adm.FechaCreacion = DateTime.Now;
@@ -151,6 +155,10 @@ namespace ChikitoExpressService
         {
            return context.Direcciones.ToList();
         }
+        public List<Cliente> GetCliente()
+        {
+            return context.Clientes.ToList();
+        }
         #endregion
         #region"Remove"
         public void RetirarPais(int idpais)
@@ -168,6 +176,35 @@ namespace ChikitoExpressService
             pais.nombre = Nombre;
             pais.fechaModicacion = DateTime.Now;
             context.SaveChanges();
+        }
+        public void ActualizarCliente(Cliente cliente, int iduser)
+        {
+            context.Configuration.ProxyCreationEnabled = true;
+            var zonas = context.Zonas.ToList();
+            var client = context.Clientes.Find(iduser);
+            client.puntoFidelizacion = cliente.puntoFidelizacion;
+            client.estado = cliente.estado;
+            client.Persona.Documento = cliente.Persona.Documento;
+            client.Persona.email = cliente.Persona.email;
+            client.Persona.estado = cliente.Persona.estado;
+            client.Persona.telefono = cliente.Persona.telefono;
+            client.Persona.primerNombre = cliente.Persona.primerNombre;
+            client.Persona.segundoNombre = cliente.Persona.segundoNombre;
+            client.Persona.primerApellido = cliente.Persona.primerApellido;
+            client.Persona.segundoApellido = cliente.Persona.segundoApellido;
+            client.Persona.nacionalidad = cliente.Persona.nacionalidad;
+            client.Persona.fechaModicacion = DateTime.Now;
+            client.Persona.Direccione.Zona = context.Zonas.Find(client.Persona.Direccione.idZona);
+            client.Persona.Direccione.Apt = cliente.Persona.Direccione.Apt;
+            client.Persona.Direccione.calle = cliente.Persona.Direccione.calle;
+            client.Persona.Direccione.casa = cliente.Persona.Direccione.casa;
+            client.Persona.Direccione.Edificio = cliente.Persona.Direccione.Edificio;
+            client.Persona.Direccione.Zona.fechaModicacion = DateTime.Now;
+            client.Persona.Direccione.idZona = cliente.Persona.Direccione.idZona;
+            client.User.idUserName = cliente.User.idUserName;
+            client.User.password = cliente.User.password;
+            context.SaveChanges();
+            context.Configuration.ProxyCreationEnabled = false;
         }
         #endregion
     }
