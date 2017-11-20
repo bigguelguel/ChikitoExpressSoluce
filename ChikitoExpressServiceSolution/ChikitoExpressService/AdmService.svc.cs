@@ -205,6 +205,50 @@ namespace ChikitoExpressService
             context.SaveChanges();
             context.Configuration.ProxyCreationEnabled = false;
         }
+
+        public List<TiposPlato> GetTipoPlatos()
+        {
+            return context.TiposPlatos.ToList();
+        }
+
+        public void PostTipoPlatos(TiposPlato tipoPlato)
+        {
+            context.TiposPlatos.Add(tipoPlato);
+            context.SaveChanges();
+        }
+
+        public List<TiposBebida> GetTipoBebidas()
+        {
+            return context.TiposBebidas.ToList();
+        }
+
+        public void PostTipoBebidas(TiposBebida tipoBebida)
+        {
+            context.TiposBebidas.Add(tipoBebida);
+            context.SaveChanges();
+        }
+
+        public List<Plato> GetPlato()
+        {
+            return context.Platos.ToList();
+        }
+
+        public void PostPlatos(Plato plato)
+        {
+            context.Platos.Add(plato);
+            context.SaveChanges();
+        }
+
+        public List<Bebida> GetBebida()
+        {
+            return context.Bebidas.ToList();
+        }
+
+        public void PostBebida(Bebida bebida)
+        {
+            context.Bebidas.Add(bebida);
+            context.SaveChanges();
+        }
         #endregion
     }
 }
