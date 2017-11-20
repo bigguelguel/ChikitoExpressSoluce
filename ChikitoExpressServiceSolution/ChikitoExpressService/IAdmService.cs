@@ -14,6 +14,16 @@ namespace ChikitoExpressService
     {
         #region"Post and Get"
         [OperationContract]
+        List<TiposPlato> GetPlatos();
+        [OperationContract]
+        void PostTipoPlatos(TiposPlato tipoPlato);
+        [OperationContract]
+        void PostTipoBebidas(TiposBebida tipoBebida);
+        [OperationContract]
+        void PostPlatos(Plato plato);
+        [OperationContract]
+        void PostBebida(Bebida bebida);
+        [OperationContract]
         void PostPais(Pais pais);
         [OperationContract]
         List<Cliente> GetCliente();

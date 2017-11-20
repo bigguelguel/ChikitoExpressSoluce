@@ -43,8 +43,7 @@ namespace ChikitoExpressService
             context.SaveChanges();
         }
         public void PostAdministrador(Administradore adm)
-        {
-            adm.FechaCreacion = DateTime.Now;
+        { 
             context.Administradores.Add(adm);
             context.SaveChanges();
         }
