@@ -39,6 +39,8 @@ public partial class Plato
 
     public bool estado { get; set; }
 
+    public string imagen { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -87,6 +87,10 @@ namespace ChikitoExpressService
         void ActualizarPais(int idPais, string Nombre, Boolean e);
         [OperationContract]
         void ActualizarCliente(Cliente cliente, int iduser);
+        [OperationContract]
+        void ActualizarBebida(int id, Bebida bebida);
+        [OperationContract]
+        void ActualizarPlato(int id, Plato plat);
         #endregion
     }
 }

@@ -249,6 +249,28 @@ namespace ChikitoExpressService
             context.Bebidas.Add(bebida);
             context.SaveChanges();
         }
+        public void ActualizarBebida(int id, Bebida bebida)
+        {
+            var beb = context.Bebidas.Find(id);
+            beb.Nombre = bebida.Nombre;
+            beb.precio = bebida.precio;
+            beb.idTipoBebida = bebida.idTipoBebida;
+            beb.descripcion = bebida.descripcion;
+            beb.estado = bebida.estado;
+            beb.imagen = bebida.imagen;
+            context.SaveChanges();
+        }
+        public void ActualizarPlato(int id, Plato plat)
+        {
+            var beb = context.Platos.Find(id);
+            beb.nombre = plat.nombre;
+            beb.precio = plat.precio;
+            beb.idTipoPlato = plat.idTipoPlato;
+            beb.descripcion = plat.descripcion;
+            beb.estado = plat.estado;
+            beb.imagen = plat.imagen;
+            context.SaveChanges();
+        }
         #endregion
     }
 }

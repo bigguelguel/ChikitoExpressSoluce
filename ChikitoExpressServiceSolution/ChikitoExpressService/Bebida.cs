@@ -39,6 +39,8 @@ public partial class Bebida
 
     public bool estado { get; set; }
 
+    public string imagen { get; set; }
+
 
 
     public virtual TiposBebida TiposBebida { get; set; }

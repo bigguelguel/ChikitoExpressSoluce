@@ -37,6 +37,7 @@
           <Property Name="precio" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="200" />
           <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="imagen" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CategoriaArticulos">
           <Key>
@@ -230,6 +231,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="200" />
           <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="imagen" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Provencias">
           <Key>
@@ -1214,6 +1216,7 @@ warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturasEnvios' does not ha
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TiposBebida" Relationship="Self.Bebidas_TiposBebidas" FromRole="Bebidas" ToRole="TiposBebidas" />
           <NavigationProperty Name="ElementosDeMenus" Relationship="Self.ElementosDeMenu_Bebidas" FromRole="Bebidas" ToRole="ElementosDeMenu" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CategoriaArticulo">
           <Key>
@@ -1453,6 +1456,7 @@ warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturasEnvios' does not ha
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ElementosDeMenus" Relationship="Self.ElementosDeMenu_Platos" FromRole="Platos" ToRole="ElementosDeMenu" />
           <NavigationProperty Name="TiposPlato" Relationship="Self.Platos_TiposPlatos" FromRole="Platos" ToRole="TiposPlatos" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Provencia">
           <Key>
@@ -2329,6 +2333,7 @@ warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturasEnvios' does not ha
           <EntitySetMapping Name="Bebidas">
             <EntityTypeMapping TypeName="chikitoexpressModel.Bebida">
               <MappingFragment StoreEntitySet="Bebidas">
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="idBebida" ColumnName="idBebida" />
                 <ScalarProperty Name="idTipoBebida" ColumnName="idTipoBebida" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2540,6 +2545,7 @@ warning 6002: The table/view 'chikitoexpress.dbo.ViewFacturasEnvios' does not ha
           <EntitySetMapping Name="Platos">
             <EntityTypeMapping TypeName="chikitoexpressModel.Plato">
               <MappingFragment StoreEntitySet="Platos">
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="idPlato" ColumnName="idPlato" />
                 <ScalarProperty Name="idTipoPlato" ColumnName="idTipoPlato" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
