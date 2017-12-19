@@ -13,23 +13,29 @@ namespace ChikitoExpressService
     public class AdmService : IAdmService
     {
         #region"Attribute"
-        ChikitoExpressContext context;
+        ChikitoExpressContext2 context;
         public AdmService()
         {
-            context = new ChikitoExpressContext();
+            context = new ChikitoExpressContext2();
             context.Configuration.ProxyCreationEnabled = false;
             
         }
         #endregion
         #region"Constructor"
-        public ViewAdministradore GetViewAdm(int value)
-        {
-            
-            return context.ViewAdministradores.Single(c => c.idAdm == value);
-        }
+    
 
         #endregion
         #region"Post"
+        public void PostElementosDeMenu(ElementosDeMenu e)
+        {
+            context.ElementosDeMenus.Add(e);
+            context.SaveChanges();
+        }
+        public void PostMenu(Menu m)
+        {
+            context.Menus.Add(m);
+            context.SaveChanges();
+        }
         public void PosProvencia(Provencia provencia)
         {
             provencia.fechaCreacion = DateTime.Now;
@@ -103,6 +109,14 @@ namespace ChikitoExpressService
         }
         #endregion
         #region"Get"
+        public List<ElementosDeMenu> GetElementosDeMenu()
+        {
+            return context.ElementosDeMenus.ToList();
+        }
+        public List<Menu> GetMenu()
+        {
+            return context.Menus.ToList();
+        }
         public List<Administradore> GetAdm(int value)
         {
             return context.Administradores.ToList();
@@ -249,15 +263,18 @@ namespace ChikitoExpressService
             context.Bebidas.Add(bebida);
             context.SaveChanges();
         }
-        public void ActualizarBebida(int id, Bebida bebida)
+        public void ActualizarBebida(int id, Bebida bebida, int idMenu)
         {
             var beb = context.Bebidas.Find(id);
             beb.Nombre = bebida.Nombre;
             beb.precio = bebida.precio;
             beb.idTipoBebida = bebida.idTipoBebida;
+            beb.ElementosDeMenus = bebida.ElementosDeMenus;
             beb.descripcion = bebida.descripcion;
             beb.estado = bebida.estado;
             beb.imagen = bebida.imagen;
+            var elemento = context.ElementosDeMenus.Single(c=> c.idBebida == id);
+            elemento.idMenu = idMenu;
             context.SaveChanges();
         }
         public void ActualizarPlato(int id, Plato plat)

@@ -22,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -112,11 +113,16 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="AdmService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administradore.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdmService.svc.cs">
+      <DependentUpon>AdmService.svc</DependentUpon>
     </Compile>
     <Compile Include="Articulo.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
@@ -172,6 +178,7 @@
     <Compile Include="FacturaEnvio.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IAdmService.cs" />
     <Compile Include="Menu.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
@@ -193,17 +200,13 @@
     <Compile Include="Plato.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provencia.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AdmService.svc.cs">
-      <DependentUpon>AdmService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="IAdmService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sucursale.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
@@ -217,24 +220,6 @@
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersRole.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewAdministradore.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCliente.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewEmpleado.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewEnvio.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewFactura.cs">
-      <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewFacturasEnvio.cs">
       <DependentUpon>ChikitoExpressModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Zona.cs">

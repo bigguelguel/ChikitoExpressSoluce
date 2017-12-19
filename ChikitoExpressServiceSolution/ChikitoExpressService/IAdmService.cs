@@ -14,6 +14,16 @@ namespace ChikitoExpressService
     {
         #region"Post and Get"
         [OperationContract]
+        String Factura();
+        [OperationContract]
+        void PostElementosDeMenu(ElementosDeMenu e);
+        [OperationContract]
+        List<ElementosDeMenu> GetElementosDeMenu();
+        [OperationContract]
+        List<Menu> GetMenu();
+        [OperationContract]
+        void PostMenu(Menu m);
+        [OperationContract]
         List<TiposPlato> GetTipoPlatos();
         [OperationContract]
         void PostTipoPlatos(TiposPlato tipoPlato);
@@ -54,8 +64,6 @@ namespace ChikitoExpressService
         [OperationContract]
         void PostAdministrador(Administradore adm);
         [OperationContract]
-        ViewAdministradore GetViewAdm(int value);
-        [OperationContract]
         List<Provencia> GetProvencias();
 
         [OperationContract]
@@ -88,7 +96,7 @@ namespace ChikitoExpressService
         [OperationContract]
         void ActualizarCliente(Cliente cliente, int iduser);
         [OperationContract]
-        void ActualizarBebida(int id, Bebida bebida);
+        void ActualizarBebida(int id, Bebida bebida, int idMenu);
         [OperationContract]
         void ActualizarPlato(int id, Plato plat);
         #endregion
